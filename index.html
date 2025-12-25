@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Vivek Sir!</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.4);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #FF1493;
+            margin-bottom: 1.5rem;
+            animation: bounce-in 1.5s forwards;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #8A2BE2;
+            margin-bottom: 2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typewriter 3s steps(40) forwards 1s;
+        }
+
+        .next-button {
+            padding: 1rem 2.5rem;
+            font-size: 1.3rem;
+            background: linear-gradient(45deg, #FF1493, #8A2BE2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .next-button:hover {
+            transform: scale(1.05);
+        }
+
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 40px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>
+        Happy Birthday,<br>
+         Vivek Sir ! 🎉🎂
+    </h1>
+
+    <div class="subtitle">
+        Hey Sir! Ready for your special surprise?
+    </div>
+
+    <button class="next-button" onclick="goToNextPage()">
+        Let's Go ✨
+    </button>
+</div>
+
+<div class="audio-controls">
+    <button id="playPause">▶️</button>
+    <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5">
+</div>
+
+<audio id="song" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2024/10/24/audio_47145285fd.mp3?filename=happy-birthday-254480.mp3">
+</audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+<script>
+    const audio = document.getElementById("song");
+    const playPause = document.getElementById("playPause");
+    const volume = document.getElementById("volume");
+
+    audio.volume = volume.value;
+
+    playPause.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play();
+            playPause.textContent = "⏸️";
+        } else {
+            audio.pause();
+            playPause.textContent = "▶️";
+        }
+    });
+
+    volume.addEventListener("input", () => {
+        audio.volume = volume.value;
+    });
+
+    function goToNextPage() {
+        gsap.to(".next-button", {
+            scale: 1.2,
+            yoyo: true,
+            repeat: 1,
+            duration: 0.9,
+            onComplete: () => {
+                window.location.href = "memorylane.html";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
